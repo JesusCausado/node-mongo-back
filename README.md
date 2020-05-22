@@ -16,7 +16,7 @@ You will also see any lint errors in the console.
 
 ### `Documentation`
 
-[express](https://expressjs.com/es) for more information. <br />
-[mongoose](https://mongoosejs.com/) for more information. <br />
-[validator](https://www.npmjs.com/package/validator) for more information. <br />
-[mongoDb](https://docs.mongodb.com/manual/) for more information.
+[express](https://expressjs.com/es)  <br />
+[mongoose](https://mongoosejs.com/)  <br />
+[validator](https://www.npmjs.com/package/validator)  <br />
+[mongoDb](https://docs.mongodb.com/manual/).
