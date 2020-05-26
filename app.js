@@ -9,6 +9,8 @@ var app = express();
 
 //Cargar ficheros rutas
 var article_routes = require('./routes/article');
+var testController = require('./controllers/noAuth');
+var router = express.Router();
 
 //MiddLewares
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -24,8 +26,12 @@ app.use((req, res, next) => {
 });
 
 
-//Añadir prefijos y rutas
+// Rutas de autenticación y login
+//router.post('/login', testController.login);
+
+// Ruta solo accesible si estás autenticado
 app.use(article_routes);
+
 
 //Exportar modulo (fichero actual)
 module.exports = app;
