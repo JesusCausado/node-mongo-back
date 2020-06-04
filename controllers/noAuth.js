@@ -2,6 +2,7 @@
 
 var validator = require('validator');
 var jwt = require('jsonwebtoken');
+var User = require('../models/user')
 
 var controller = {
 
@@ -15,25 +16,33 @@ var controller = {
     var username = req.body.user
     var password = req.body.password
 
-    if (!(username === 'jesus' && password === '123')) {
-      res.status(401).send({
-        error: 'usuario o contraseña inválidos'
-      })
-      return
-    }
+    User.findOne({ user: username }, (err, user) => {
+      if (err || !user) {
+        return res.status(404).send({
+          status: 'error',
+          message: 'Usuario no registrado!'
+        });
+      } else {
+        if (!(username === user.user && password === user.password)) {
+          return res.status(401).send({
+            error: 'usuario o contraseña inválidos'
+          })
+        }
 
-    var tokenData = {
-      username: username
-      // ANY DATA
-    }
+        var tokenData = {
+          username: username
+          // ANY DATA
+        }
 
-    var token = jwt.sign(tokenData, 'Secret Password', {
-      expiresIn: 60 * 60 * 24 // expires in 24 hours
-    })
+        var token = jwt.sign(tokenData, 'Secret Password', {
+          expiresIn: 60 * 60 * 24 // expires in 24 hours
+        })
 
-    return res.status(200).send({
-      token
-    });
+        return res.status(200).send({
+          token
+        });
+      }  
+    });    
   }
 
 };//End controller

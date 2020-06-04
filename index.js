@@ -8,7 +8,7 @@ mongoose.set('useFindAndModify', false);
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost:27017/test', { useNewUrlParser: true })
   .then(() => {
-    console.log('Bd creada correctamente');
+    console.log('Sesion iniciada correctamente!');
 
     //Create server
     app.listen(port, () => {

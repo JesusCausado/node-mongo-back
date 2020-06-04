@@ -8,7 +8,7 @@ var bodyParser = require('body-parser');
 var app = express();
 
 //Cargar ficheros rutas
-var article_routes = require('./routes/article');
+var routes = require('./routes/routes');
 var testController = require('./controllers/noAuth');
 var router = express.Router();
 
@@ -26,12 +26,8 @@ app.use((req, res, next) => {
 });
 
 
-// Rutas de autenticación y login
-//router.post('/login', testController.login);
-
-// Ruta solo accesible si estás autenticado
-app.use(article_routes);
-
+// Rutas
+app.use(routes);
 
 //Exportar modulo (fichero actual)
 module.exports = app;
